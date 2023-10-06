@@ -49,7 +49,7 @@ If they are not installed on your local machine, then refer to the setup instruc
 ## 1. Clone the repository:
 
 ```sh
-git clone TBC
+git clone https://github.com/developer4551/ase2-countryinfolookup.git
 ```
 
 ## 2. Run Scripts to launch application
