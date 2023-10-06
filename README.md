@@ -70,3 +70,11 @@ a
 ```
 
 More information on how to run tests can be found [here] (https://facebook.github.io/create-react-app/docs/running-tests).
+
+## Continuous integration
+As multiple developers collbaoratively work on a shared code base, it is important to check if the new commits maintain the integrity of code base by running continuous build and tests. 
+This helps to avoid any breaking changes from being committed to main branch. Continuous integration captures any regression testing issues with each pull request prior to merging with main.
+[GitHub Actions](https://github.com/features/actions) provide simple way of setting up software workflow such that it gets builds, tests and deploys. The virtual build servers can run and test your application on a different host operating system and runtimes.
+
+
+Continuous integration status: [![Node.js CI](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/node.js.yml/badge.svg)](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/node.js.yml)
