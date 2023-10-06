@@ -59,3 +59,14 @@ npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## 3. Run unit tests
+
+```sh
+npm test
+```
+```sh
+a
+```
+
+More information on how to run tests can be found [here] (https://facebook.github.io/create-react-app/docs/running-tests).
