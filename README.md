@@ -107,4 +107,4 @@ development and testing, uat testing verifies requirements captured at the start
 To ensure thorough testing coverage, [Codecov](https://about.codecov.io/) has been configured to establish overall code coverage. This highlights to 
 avoid any untested code to be deployed to Live environment.
 
-[![codecov](https://codecov.io/gh/developer4551/ase2-countryinfolookup/branch/main/graph/badge.svg?token=FkUOknCveH)](https://app.codecov.io/github/developer4551/ase2-countryinfolookup/commit/c772f90e9b4d9ea066c409315d37ca7fbb0d906f)
+[![codecov](https://codecov.io/gh/developer4551/ase2-countryinfolookup/branch/main/graph/badge.svg?token=FkUOknCveH)](https://app.codecov.io/gh/developer4551/ase2-countryinfolookup)
