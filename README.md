@@ -88,6 +88,7 @@ Continuous integration status: [![Node.js CI](https://github.com/developer4551/a
 
 The application deploys to Netlify platform to ensure continuous deployment of tested and working software. Netlify was chosen as the deployment platform 
 due to its ease of integrating with GitHub repos and reasonable learning curve to be able to deploy web applications with simple to use intuitive user interface.
+Netlify can manage deployments to various environments.
 
 ## Application urls
 [Live](https://main--papaya-fenglisu-b89a86.netlify.app/)
