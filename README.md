@@ -82,6 +82,16 @@ the application in.
 
 Continuous integration status: [![Node.js CI](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/node.js.yml/badge.svg)](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/node.js.yml)
 
+## Continuous deployment
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2829bf8a-4a16-4a44-b4a9-beb6dd65277d/deploy-status)](https://app.netlify.com/sites/papaya-fenglisu-b89a86/deploys)
+
+The application deploys to Netlify platform to ensure continuous deployment of tested and working software. Netlify was chosen as the deployment platform 
+due to its ease of integrating with GitHub repos and reasonable learning curve to be able to deploy web applications with simple to use intuitive user interface.
+
+## Application urls
+[Live](https://main--papaya-fenglisu-b89a86.netlify.app/)
+
 ## Testing
 The application testing was conducted by different testing types.
 
