@@ -8,9 +8,9 @@ const searchDropdownOptions = {
     'null',
     'Search by country name, country code, country capital.',
   ],
-  Name: ['name', 'Enter country\'s full name.'],
+  Capital: ['capital', 'Enter country\'s capital.'], 
   Code: ['alpha', 'Enter country code. '],
-  Capital: ['capital', 'Enter country\'s capital.'],
+  Name: ['name', 'Enter country\'s full name.']
 };
 
 function HomePage() {
@@ -25,6 +25,7 @@ function HomePage() {
               name='searchOption'
               id="selectOpt"
               className='search-dropdown'
+              data-testid='select'
             >
               {Object.keys(searchDropdownOptions).map((item) => (
                 <option
@@ -32,6 +33,7 @@ function HomePage() {
                     item !== 'Please select a search option' ? item : 'null'
                   }
                   key={item}
+                  data-testid="dropdown-options"
                 >
                   {item}
                 </option>
@@ -43,15 +45,17 @@ function HomePage() {
               <label for='default-search' className='search-dropdown-label'>Please provide input </label>
 
               <input
-                type='search'
+                type='text'
                 id='default-search'
                 className='search-text-box'
                 required
                 name='inputText'
+                data-testid='searchTextBox'
               />
               <button
                 type='submit'
                 className='search-text-box-button'
+                data-testid="searchBtn"
               >
                 Search
               </button>
