@@ -1,41 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
+import '../css/HomePage.css';
+
 
 const searchDropdownOptions = {
-  'None selected': [
-  'null',
-  'Search by country name, country code, country capital.',
+  'Please select appropriate search option': [
+    'null',
+    'Search by country name, country code, country capital.',
   ],
-  Capital: ['capital', 'Enter country\'s capital.'],
+  Name: ['name', 'Enter country\'s full name.'],
   Code: ['alpha', 'Enter country code. '],
-  Name: ['name', 'Enter country\'s full name.']
+  Capital: ['capital', 'Enter country\'s capital.'],
 };
 
 function HomePage() {
+
   return (
-    <div>
-      <div>
-        <div>
-          <div>
-            <label>Choose search option </label>
-            <select name='searchOption'>
+    <div className='app-container'>
+      <div className='search-container'>
+        <div className='inputs-container'>
+          <div className='form-align'>
+            <label for='selectOpt' className='search-dropdown-label'>Choose search option</label>
+            <select
+              name='searchOption'
+              id="selectOpt"
+              className='search-dropdown'
+            >
               {Object.keys(searchDropdownOptions).map((item) => (
-                <option value={
-                  item !== 'None selected' ? item : 'null'
-                }
+                <option
+                  value={
+                    item !== 'Please select a search option' ? item : 'null'
+                  }
                   key={item}
                 >
-                {item}
+                  {item}
                 </option>
               ))}
             </select>
           </div>
-          <div>
-            <div>
-              <div>
-              </div>
-              <input type='search' name='inputText' required/>
-              <button type='submit'>
+          <div className='search-textbox-outer-container'>
+            <div className='search-textbox-inner-container'>
+              <label for='default-search' className='search-dropdown-label'>Please provide input </label>
+
+              <input
+                type='search'
+                id='default-search'
+                className='search-text-box'
+                required
+                name='inputText'
+              />
+              <button
+                type='submit'
+                className='search-text-box-button'
+              >
                 Search
               </button>
             </div>

@@ -1,5 +1,4 @@
 import './App.css';
-//import React, { useState } from "react";
 import {
   Routes,
   Route
@@ -11,7 +10,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Welcome to country information lookup
+          Welcome to Country Information Lookup
         </p>
         <>
           <Routes>
