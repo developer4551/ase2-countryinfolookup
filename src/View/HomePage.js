@@ -113,8 +113,8 @@ function HomePage() {
       </div>
 
 
-      {listOfCountries.length != 0 && inputData.searchOption !== 'Select search option' &&
-        inputData.inputText.length != 0 ? 'Countries found' : 'Please provide correct input'
+      {listOfCountries.length !== 0 && inputData.searchOption !== 'Select search option' &&
+        inputData.inputText.length !== 0 ? 'Countries found' : 'Please provide correct input'
 
       }
       {
