@@ -4,36 +4,56 @@ import React, { useState } from 'react';
 
 
 const searchDropdownOptions = {
-    'Select search option': [
+  'Select search option': [
     'null',
     'Search by country name, country code, country capital.',
   ],
-  Capital: ['capital', 'Enter country\'s capital.'], 
-  Code: ['code', 'Enter country code. '],
+  Capital: ['capital', 'Enter country\'s capital.'],
+  Code: ['alpha', 'Enter country code. '],
   Name: ['name', 'Enter country\'s full name.']
 };
 
 function HomePage() {
 
   const handleSearchOptionSelected = (event) => {
-    setInputData({...inputData,[event.target.name]: event.target.value,});
+    setInputData({ ...inputData, [event.target.name]: event.target.value, });
 
     if (`${event.target.value}` in searchDropdownOptions) {
-      setInputData({ ...inputData, [event.target.name]: `${searchDropdownOptions[event.target.value][0]}`,});
+      setInputData({ ...inputData, [event.target.name]: `${searchDropdownOptions[event.target.value][0]}`, });
       console.log(searchDropdownOptions[event.target.value][0]);
       setDefaultText(searchDropdownOptions[event.target.value][1]);
     }
   };
 
-  const [inputData, setInputData] = useState({inputText: '', searchOption: '',});
+  const [inputData, setInputData] = useState({ inputText: '', searchOption: '', });
   const [defaultText, setDefaultText] = useState('Enter country name, capital or code.');
+  const [listOfCountries, setlistOfCountries] = useState([]);
 
   const handleSearchButtonClick = (event) => {
     if (event.keyCode === 13) {
-      // Call external REST api here
-      console.log("Search button clicked");
+      getDataFromExternalApi();
     }
   };
+
+  const getDataFromExternalApi = async () => {
+    try {
+      if (
+        inputData.searchOption === 'Select search option' ||
+        inputData.inputText.length === 0
+      ) {
+        console.log('input searchopt ', inputData.searchOption);
+        console.log('**input text ', inputData.inputText);
+      }
+      else {
+        const apiurl = `https://restcountries.com/v3.1/${inputData.searchOption}/${inputData.inputText}`;
+        const response = await (await fetch(apiurl)).json();
+        setlistOfCountries(response);
+      }
+    }
+    catch (error) {
+    }
+  };
+
   return (
     <div className='app-container'>
       <div className='search-container'>
@@ -51,7 +71,7 @@ function HomePage() {
               {Object.keys(searchDropdownOptions).map((item) => (
                 <option
                   value={
-                  item !== 'Please select a search option' ? item : 'null'
+                    item !== 'Please select a search option' ? item : 'null'
                   }
                   key={item}
                   data-testid="dropdown-options"
@@ -68,13 +88,14 @@ function HomePage() {
               <label htmlFor='default-search' className='search-dropdown-label'>Please provide input </label>
 
               <input
+                name='inputText'
                 type='text'
                 id='default-search'
                 className='search-text-box'
-                name='inputText'
                 data-testid='searchTextBox'
                 placeholder={defaultText}
-                onKeyDown={(e) => handleSearchButtonClick(e)}
+                onChange={handleSearchOptionSelected}
+                onKeyDown={handleSearchButtonClick}
                 required
               />
 
@@ -82,6 +103,7 @@ function HomePage() {
                 type='submit'
                 className='search-text-box-button'
                 data-testid="searchBtn"
+                onClick={getDataFromExternalApi}
               >
                 Search
               </button>
@@ -89,6 +111,21 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+
+      {listOfCountries.length != 0 && inputData.searchOption !== 'Select search option' &&
+        inputData.inputText.length != 0 ? 'Countries found' : 'Please provide correct input'
+
+      }
+      {
+
+        listOfCountries.map(country => (
+          <p>{country.name.official}<br />
+            {country.subregion}</p>
+        )
+        )
+      }
+
     </div>
   );
 }

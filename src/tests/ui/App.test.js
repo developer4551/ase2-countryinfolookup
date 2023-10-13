@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import App from '../../App';
 import { BrowserRouter } from 'react-router-dom';
+import HomePage from '../../View/HomePage';
 
 describe("checking_UI_Components", () => {
 test('renders Welcome to Country Information Lookup text', () => {
