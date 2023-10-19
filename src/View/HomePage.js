@@ -1,5 +1,9 @@
 import '../App.css';
 import '../css/HomePage.css';
+import CountryDetailsComponent from '../component/CountryDetailsComponent.js';
+import ErrorMessageComponent from '../component/ErrorMessageComponent.js';
+import NoCountryFoundErrorMessageComponent from '../component/NoCountryFoundErrorMessageComponent.js';
+
 import React, { useState } from 'react';
 
 
@@ -14,20 +18,22 @@ const searchDropdownOptions = {
 };
 
 function HomePage() {
-
   const handleSearchOptionSelected = (event) => {
     setInputData({ ...inputData, [event.target.name]: event.target.value, });
-
     if (`${event.target.value}` in searchDropdownOptions) {
       setInputData({ ...inputData, [event.target.name]: `${searchDropdownOptions[event.target.value][0]}`, });
       console.log(searchDropdownOptions[event.target.value][0]);
       setDefaultText(searchDropdownOptions[event.target.value][1]);
+      console.log(searchDropdownOptions[event.target.value][1]);
     }
   };
 
-  const [inputData, setInputData] = useState({ inputText: '', searchOption: '', });
+  const [inputData, setInputData] = useState({ inputText: '', searchOption: ''});
   const [defaultText, setDefaultText] = useState('Enter country name, capital or code.');
   const [listOfCountries, setlistOfCountries] = useState([]);
+  const [error, setErrorMessage] = useState('');
+  const [noCountryFounderror, setNoCountryFoundErrorMessage] = useState('');
+
 
   const handleSearchButtonClick = (event) => {
     if (event.keyCode === 13) {
@@ -35,22 +41,46 @@ function HomePage() {
     }
   };
 
+  function validateUserInput(searchOption, inputText){
+    let regexForAllowingAlphabetsOnly = /^[a-zA-Z]+$/; 
+    return  inputData.searchOption === 'Select search option' ||
+    inputData.inputText.length === 0 || 
+    inputData.searchOption === null  || 
+    inputData.inputText === null ||
+    inputData.searchOption === ''  || 
+    inputData.inputText === '' ||
+    !(regexForAllowingAlphabetsOnly.test(inputData.inputText));
+  }
+
   const getDataFromExternalApi = async () => {
     try {
-      if (
-        inputData.searchOption === 'Select search option' ||
-        inputData.inputText.length === 0
+      if (validateUserInput(inputData.searchOption ,inputData.inputText.length
+      )
       ) {
         console.log('input searchopt ', inputData.searchOption);
         console.log('**input text ', inputData.inputText);
+        setErrorMessage(<ErrorMessageComponent />)
+        setlistOfCountries('');
+        setNoCountryFoundErrorMessage('');
       }
       else {
         const apiurl = `https://restcountries.com/v3.1/${inputData.searchOption}/${inputData.inputText}`;
         const response = await (await fetch(apiurl)).json();
+        console.log(response);
         setlistOfCountries(response);
+
+        if(response.message === 'Not Found'){
+          setlistOfCountries('');
+          setErrorMessage('');
+          setNoCountryFoundErrorMessage(<NoCountryFoundErrorMessageComponent />);
+        }else{
+          setErrorMessage('');
+          setNoCountryFoundErrorMessage('');
+        }
       }
     }
     catch (error) {
+      setErrorMessage(<ErrorMessageComponent />)
     }
   };
 
@@ -60,7 +90,7 @@ function HomePage() {
         <div className='inputs-container'>
 
           <div className='form-align'>
-            <label htmlFor='selectOpt' className='search-dropdown-label'>Choose search option</label>
+            <label htmlFor='selectOpt' className='search-dropdown-label'> Choose search option</label>
             <select
               name='searchOption'
               id="selectOpt"
@@ -102,7 +132,7 @@ function HomePage() {
               <button
                 type='submit'
                 className='search-text-box-button'
-                data-testid="searchBtn"
+                data-testid='searchBtn'
                 onClick={getDataFromExternalApi}
               >
                 Search
@@ -112,20 +142,34 @@ function HomePage() {
         </div>
       </div>
 
+      <p>{error}</p>
+      <p>{noCountryFounderror}</p>
 
-      {listOfCountries.length !== 0 && inputData.searchOption !== 'Select search option' &&
-        inputData.inputText.length !== 0 ? 'Countries found' : 'Please provide correct input'
+      <section className='country-details-section'>
+        {
+          (listOfCountries !== null && listOfCountries.length !== 0) ? <p className='search-dropdown-label'>Countries matching criteria - {listOfCountries.length} </p> : ''
+        }
 
-      }
-      {
-
-        listOfCountries.map(country => (
-          <p>{country.name.official}<br />
-            {country.subregion}</p>
-        )
-        )
-      }
-
+        {(listOfCountries !== null && listOfCountries.length !== 0)
+          ? listOfCountries.map(
+            (country) => (
+              <CountryDetailsComponent
+                officialName={country.name.official}
+                capital={country.capital}
+                currencyName={Object.values(country.currencies)[0].name}
+                currencySymbol={Object.values(country.currencies)[0].symbol}
+                demonyms={country.demonyms.eng.f}
+                flag={country.flags.png}
+                language={Object.values(country.languages)[0]}
+                map={country.maps.googleMaps}
+                population={Number(country.population).toLocaleString()}
+                subRegion={country.subregion}
+                timezones={country.timezones}
+              />
+            )
+          )
+          : ''}
+      </section>
     </div>
   );
 }
