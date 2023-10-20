@@ -1,5 +1,5 @@
 ---
-  name: CI Pipeline
+  name: UAT CI Pipeline
   on:
     push:
       branches:
