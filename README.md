@@ -329,5 +329,8 @@ The workflow related GitHub actions for Live and UAT environments are maintained
 
 Both Jest and Cypress test names describe the functionality being tested.
 
+### Vulnerabilities scanning and update
+The repository has Dependabot plugin enables which automatically scans and updates any dependencies with known vulnerabilities. Dependabot uses GitHub Advisory Database which interfaces with wel known data sources such as National Vulnerability Database (NVD). Automated pull requests will be raised by dependabot if it comes across any vulnerabilities updates while scanning.
+
 ### Future Project Scope
-The proof of concept has been successful in gaining more confidence in adopting React as the frontend technology to develop existing workplace application UI. However, there are GraphQL endpoints that will need to be proven as a spike in future iterations of this application. Cypress tests can be further refactored to use beforeEach hook to reduce code redundancy. Seed data can be setup to improve execution time and reduce dependency on availability of external api endpoint.
+The proof of concept has been successful in gaining more confidence in adopting React as the frontend technology to develop existing workplace application UI. However, there are GraphQL endpoints that will need to be proven as a spike in future iterations of this application. Cypress tests can be further refactored to use beforeEach hook to reduce code redundancy. Seed data can be setup to improve execution time and reduce dependency on availability of external api endpoint. Another good to have fature that can be added in future is eslint for static code analysis. 
