@@ -185,6 +185,18 @@ npx cypress open
 ```
 More information on how to run tests can be found [here] (https://facebook.github.io/create-react-app/docs/running-tests).
 
+## MVP Roadmap
+
+The scope for this MVP was to use reacct to standup a basic user interface that would accept user input and fetch data from an api to be rendered in response.
+
+- Setup CI and CD using gitHubActions and Netlify deployments
+- Create basic HTML and CSS for the home page alongside writing tests
+- Add UI elements on page
+- Add functionality for validation and search button click to call external api
+- Create component to display country details
+- Create components to display reusable error messages for future development
+- Write cypress tests, run Lighthouse tool
+
 ## Branching and deployment strategies
 
 There are two code branches of the repository namely main and uat. Main is the code version of application that is  representative of the Live system. uat branch signifies the next application version bundled with new features. Developers branch off uat from main to mark the start of next development iteration of the product. Each feature branch is forked from uat branch and is then synched with other parallel feature development. Once all the features have been built that form part of next release, the uat branch is then merged back to main. The branch tag on main at this point signifies the point at which the new changes are merged onto main. The uat branch undergoes final round of testing by users to verify system requirements been met, more on this has been discussed in the testing section of this report. See [V-model] (https://www.proquest.com/docview/1443699838?accountid=12085&forcedol=true&forcedol=true#)
@@ -312,25 +324,19 @@ Codecov report
 Accessible website is key non-functional requirement for any web application. An accessible website caters to all users irrespective of their shortcomings or disabilities. Online inclusivity encourages such users to access and interact with the online services in the same way as other users with no accessibility issues. Application accessibility is reflective of a well thought, user centric user experience. Web Content Accessibility Guidelines (WCAG) 2 provide set of recommendations to assess software accessibility against.
 
 In the UK, public facing digital government services need to conform to a WCAG 2.2 level AA in order to be published to citizens. For the purposes of country info lookup application, a free tool provided by Google, Lighthouse tool was run to assess its WCAG conformance, performance, best practices, SEO optimisation and Progressive web application (PWA). 
-The application scored highest (100) across all the areas. PWA are responsive to different rendering devices and have good user engagement due to their faster loading times and device agnostic nature.
+Application scored highest (100) across all the areas. PWA are responsive and have good user engagement due to their faster loading times and device agnostic nature.
 
 ![Lighthouse_Accessibility_Performance_Score](https://github.com/developer4551/ase2-countryinfolookup/assets/146597986/87836acd-9e25-4856-be3a-0719c4f1b71e)
 
 ### Coding best practices
-The source code has been organised into folders following SOLID principles. The components folder hosts functionality that can be reused in future enhancements of the application. These are country details and error messages. Each class, file or component is responsible for a single purpose that is independent of the other. Code has been modularised to adhering to KISS (Keep It Simple) and DRY (Don't Repeat Yourself). The files have been assigned sensible name that clearly convey their purpose.
-
-The variables in code follow camel-casing naming convention.
-
+The source code has been organised into folders following SOLID principles. The components folder hosts functionality that can be reused in future enhancements of the application. These are country details and error messages. Each class, file or component is responsible for a single purpose that is independent of the other. Code has been modularised to adhering to KISS (Keep It Simple) and DRY (Don't Repeat Yourself). The files have been assigned sensible name that clearly convey their purpose. Code variables follow camel-casing naming convention.
 Stylesheets have been created to ensure uniform and device agnostic look and feel of the application. These are maintained under css folder. Block-Element-Modifier (BEM) naming convention has been followed to make it easy to understand the section of element the style applies to.
-
-Tests using reacting testing library and Jest are hosted under tests / ui folder. The test coverage is not complete given that we have covered testing on the external REST api via cypress tests.
-
+Tests using reacting testing library and Jest are hosted under tests / ui folder. The test coverage is not complete given that we have covered testing on the external REST api via cypress tests. Both Jest and Cypress test names describe the functionality being tested.
 The workflow related GitHub actions for Live and UAT environments are maintained under .github / workflow folder.
 
-Both Jest and Cypress test names describe the functionality being tested.
-
 ### Vulnerabilities scanning and update
-The repository has Dependabot plugin enables which automatically scans and updates any dependencies with known vulnerabilities. Dependabot uses GitHub Advisory Database which interfaces with wel known data sources such as National Vulnerability Database (NVD). Automated pull requests will be raised by dependabot if it comes across any vulnerabilities updates while scanning.
+The repository has Dependabot plugin enables which automatically scans and updates any dependencies with known vulnerabilities. It uses GitHub Advisory Database which interfaces with well-known data sources such as National Vulnerability Database (NVD). Automated pull requests will be raised if it comes across any vulnerabilities updates while scanning.
+Other static application security testing tool is Snyk. It scans GitHub repos regularly and reports security critical issues. Depending on the severity of the issue, it categorises them. A bot process sends email notification to the team to raise awareness and urgency. Snyk code can be very quickly added as plugin to a wide range of IDEs. This encourages to develop security focussed code during build instead of being a reactive after thought.
 
 ### Future Project Scope
-The proof of concept has been successful in gaining more confidence in adopting React as the frontend technology to develop existing workplace application UI. However, there are GraphQL endpoints that will need to be proven as a spike in future iterations of this application. Cypress tests can be further refactored to use beforeEach hook to reduce code redundancy. Seed data can be setup to improve execution time and reduce dependency on availability of external api endpoint. Another good to have fature that can be added in future is eslint for static code analysis. 
+The proof of concept has been successful in gaining more confidence in adopting React as the frontend technology to develop existing workplace application UI. However, there are GraphQL endpoints that will need to be proven as a spike in future iterations of this application. Cypress tests can be further refactored to use beforeEach hook to reduce code redundancy. Seed data can be setup to improve execution time and reduce dependency on availability of external api endpoint. Another good to have fature that can be added in future is ESLint for static code analysis and prettier for standardising code formatting.  Although ESLint does add value by highlighting syntax errors, coding format violations, it can produce false positive warnings and errors. Further consideration should be given to load testing and penetration testing of the application. There is currently no authentication or authorisation capability which is something that should be prioritised from security perspective.
