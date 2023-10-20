@@ -1,0 +1,46 @@
+---
+  name: CI Pipeline
+  on:
+    push:
+      branches:
+        - uat
+    pull_request:
+      types: [opened, synchronize, reopened, closed]
+      branches:
+        - main
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version:
+            - 14.x
+            - 16.x
+            - 18.x
+      steps:
+        - name: Checkout code repository
+          uses: actions/checkout@v3
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: Install application dependencies
+          run: npm install
+        - name: Execute tests and generate coverage report
+          run: npm test -- --coverage
+        - name: Upload coverage to Codecov
+          uses: codecov/codecov-action@v1
+          env:
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        - name: Build
+          run: npm run build
+    Cypress_Tests:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - name: Cypress Run
+          uses: cypress-io/github-action@v6
+          with:
+            build: npm run build
+            start: npm start
+  

@@ -1,12 +1,13 @@
 ---
-  name: CI Pipleline
+  name: CI Pipeline
   on:
     push:
       branches:
-        - main
+        - uat
     pull_request:
+      types: [opened, synchronize, reopened, closed]
       branches:
-        - main
+        - uat
   jobs:
     build:
       runs-on: ubuntu-latest
