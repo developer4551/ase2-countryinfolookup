@@ -36,8 +36,11 @@ function HomePage() {
 
 
   const handleSearchButtonClick = (event) => {
+    console.log('search button clicked');
+
     if (event.keyCode === 13) {
       getDataFromExternalApi();
+      console.log('search button clicked');
     }
   };
 
@@ -147,7 +150,7 @@ function HomePage() {
 
       <section className='country-details-section'>
         {
-          (listOfCountries !== null && listOfCountries.length !== 0) ? <p className='search-dropdown-label'>Countries matching criteria - {listOfCountries.length} </p> : ''
+          (listOfCountries !== null && listOfCountries.length !== 0) ? <p className='search-dropdown-label' data-testid='numberOfSearchResults'>Countries matching criteria - {listOfCountries.length} </p> : ''
         }
 
         {(listOfCountries !== null && listOfCountries.length !== 0)
