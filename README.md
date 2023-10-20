@@ -1,4 +1,10 @@
-# Advanced Software Engineering Summative 2 - Country Information Lookup App [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Advanced Software Engineering Summative 2 - Country Information Lookup App 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+ | [![Prod CI Pipeline](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/prod.yml/badge.svg)](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/prod.yml)
+ | [![UAT CI Pipeline](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/uat.yml/badge.svg)](https://github.com/developer4551/ase2-countryinfolookup/actions/workflows/uat.yml)
+ | [![Netlify Status](https://api.netlify.com/api/v1/badges/2829bf8a-4a16-4a44-b4a9-beb6dd65277d/deploy-status)](https://app.netlify.com/sites/live-countrylookup/deploys)
+ | [![Netlify Status](https://api.netlify.com/api/v1/badges/d57128c3-3491-47ee-9565-0ceb3bfc6bd2/deploy-status)](https://app.netlify.com/sites/uat-countrylookup/deploys) | [![codecov](https://codecov.io/gh/developer4551/ase2-countryinfolookup/graph/badge.svg?token=9IPO2CIY47)](https://codecov.io/gh/developer4551/ase2-countryinfolookup)
+
 
 ## Project background
 One of the UK Government department's software delivery team currently maintains a legacy ASP.Net MVC application.
@@ -292,13 +298,15 @@ Requirements traceability matrix (RTM) is an artefact that ties up project propo
 
 Business requirements can have many to many cardinalities with test cases. Therefore, traceability matrix can be interpreted from requirements to testing, testing to requirements as well as bi-directional. This helps in case of failing tests to understand which requirement or requirements, it corresponds to.
 
-### Code coverage
+### Code coverage 
+[![codecov](https://codecov.io/gh/developer4551/ase2-countryinfolookup/graph/badge.svg?token=9IPO2CIY47)](https://codecov.io/gh/developer4551/ase2-countryinfolookup)
+
 To ensure thorough testing coverage, [Codecov](https://about.codecov.io/) has been configured to establish overall code coverage. This highlights to 
 avoid any untested code to be deployed to Live environment.
 The code coverage report for the application can be found at the location below. The code coverage tool is easy to integrate and setup to run as part of the CI/CD pipeline. The coverage report provides a good indication of the overall code being tested and ensure no unwanted or untested logic is accidentally deployed to Live. Thus, it provides instant feedback on any pull request that reduces the coverage percentage and makes the feedback loop faster for the developer to action upon. In order for the coverage tool to assess the repository in GitHub, the user had to grant access to one's account via a codecov access token authorising the access as shown in screenshot below.
 
-[![codecov](https://codecov.io/gh/developer4551/ase2-countryinfolookup/branch/main/graph/badge.svg?token=FkUOknCveH)](https://app.codecov.io/gh/developer4551/ase2-countryinfolookup)
-
+Codecov report
+![CodeCov_Report](https://github.com/developer4551/ase2-countryinfolookup/assets/146597986/f690f1e4-40ba-40e1-b770-5ed9c8841495)
 
 ### Application Accessibility and Performance
 Accessible website is key non-functional requirement for any web application. An accessible website caters to all users irrespective of their shortcomings or disabilities. Online inclusivity encourages such users to access and interact with the online services in the same way as other users with no accessibility issues. Application accessibility is reflective of a well thought, user centric user experience. Web Content Accessibility Guidelines (WCAG) 2 provide set of recommendations to assess software accessibility against.
