@@ -69,7 +69,7 @@ function HomePage() {
         console.log(response);
         setlistOfCountries(response);
 
-        if(response.message === 'Not Found'){
+        if(response.message !== undefined){
           setlistOfCountries('');
           setErrorMessage('');
           setNoCountryFoundErrorMessage(<NoCountryFoundErrorMessageComponent />);

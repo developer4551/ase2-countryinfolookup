@@ -14,8 +14,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.16.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "fork-ts-checker-webpack-plugin": "^6.5.3"
+    "cypress": "^13.3.2",
+    "fork-ts-checker-webpack-plugin": "^6.5.3",
+    "jest-environment-jsdom": "^29.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
